@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: b-service
+  cloud:
+    config:
+      uri: http://localhsot:8888
+      password: 123456

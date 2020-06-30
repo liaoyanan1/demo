@@ -1,0 +1,9 @@
+spring:
+#  cloud:
+#    config:
+#      uri: http://localhost:8888
+#      password: 123456
+  application:
+    name: a-service
+server:
+  port: 8081

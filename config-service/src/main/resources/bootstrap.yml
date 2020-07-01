@@ -1,13 +1,20 @@
 server:
   port: 8888
 spring:
+  application:
+    name: config-service
   profiles:
     active: native
   cloud:
     config:
       server:
         native:
-          search-locations: classpath:/config
+          search-locations: classpath:/config #配置路径
   security:
     user:
-      password: 123456
+      password: 123456   #配置config服务密码
+      name: usr
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/ #配置服务注册发现地址

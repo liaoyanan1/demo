@@ -48,5 +48,6 @@
         <module>gateway-service</module>
         <module>a-service</module>
         <module>b-service</module>
+        <module>oauth2</module>
     </modules>
 </project>

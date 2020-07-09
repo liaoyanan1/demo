@@ -10,5 +10,16 @@ spring:
         service-id: config-service
   profiles:
     active: dev
+
 server:
   port: 9090
+  servlet:
+    context-path: /B
+    session:
+      cookie:
+        name: BSESSION
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

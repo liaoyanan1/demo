@@ -19,20 +19,23 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
         oauthServer.tokenKeyAccess("permitAll()")
                 .checkTokenAccess("isAuthenticated()");
     }
+
+
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+        //访问数据库获取客户端id和密码权限等
         clients.inMemory()
-                .withClient("SampleClientId")
-                .secret(passwordEncoder().encode("clientsecret"))
-                .authorizedGrantTypes("authorization_code")
-                .scopes("user_info")
-                .autoApprove(true)
-                .redirectUris(
-                        "http://localhost:8080/login");
+                .withClient("lyn")
+                .secret(passwordEncoder().encode("123456"))
+                .scopes("read","write")
+                .authorities("ROLE_CLIENT")
+                .authorizedGrantTypes("authorization_code","refresh_token","implicit","password")
+                .redirectUris("http://localhost:8080/A/login","http://localhost:9090/B/login")
+                .autoApprove(true);
     }
 
-
-    public PasswordEncoder passwordEncoder (){
+    @Bean
+    public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
 }

@@ -5,8 +5,9 @@ package com.example.oauth2.mapper;
 import com.example.oauth2.entity.UserInfo;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.springframework.stereotype.Repository;
 
-
+@Repository
 public interface UserInfoMapper {
     @Select("SELECT * FROM user WHERE userLoginName = #{userName}")
     UserInfo queryUserByUserName(String userName);

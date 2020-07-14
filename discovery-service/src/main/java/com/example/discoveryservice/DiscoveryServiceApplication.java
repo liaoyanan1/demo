@@ -20,7 +20,9 @@ public class DiscoveryServiceApplication {
     static class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         @Override
         protected void configure(HttpSecurity http) throws Exception {
-            http.csrf().disable().authorizeRequests().anyRequest().authenticated().and().httpBasic();
+            http.csrf().disable(); //关闭csrf
+            //开启认证
+            super.configure(http);
         }
     }
 }

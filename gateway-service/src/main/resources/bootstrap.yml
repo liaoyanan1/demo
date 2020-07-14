@@ -3,14 +3,19 @@ spring:
     name: gateway-service
   cloud:
     config:
-     password: 123456
-     username: usr
-     discovery:
-       enabled: true
-       service-id: config-service
+      discovery:
+        enabled: true
+        service-id: config-service
+      username: usr
+      password: 123456
   profiles:
     active: dev
 
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://lyn:123456@127.0.0.1:8761/eureka/ #配置服务注册发现地址
 server:
   port: 9999
-

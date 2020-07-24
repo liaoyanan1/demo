@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.Principal;
+
 @RestController
 @RefreshScope
 public class TestController {
@@ -20,7 +22,7 @@ public class TestController {
 
    // @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/A")
-    public String A(){
-        return A;
+    public String A(Principal principal){
+        return A+principal;
     }
 }

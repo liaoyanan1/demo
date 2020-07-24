@@ -28,15 +28,10 @@ eureka:
 security:
   oauth2:
     client:
-      accessTokenUri: http://192.168.3.103:8899/oauth/token
-      userAuthorizationUri: http://192.168.3.103:8899/oauth/authorize
+      accessTokenUri: http://192.168.3.103:9999/gateway/oauth2/oauth/token
+      userAuthorizationUri: http://192.168.3.103:9999/gateway/oauth2/oauth/authorize
       client-id: login
       client-secret: 123456
-      clientAuthenticationScheme: form
     resource:
-      userInfoUri: http://192.168.3.103:8899/user/me
+      userInfoUri: http://192.168.3.103:9999/gateway/oauth2/user/me
       preferTokenInfo: false
-    authorization:
-      check-token-access: http://192.168.3.103:8899/oauth/check_token
-    sso:
-      login-path: /login

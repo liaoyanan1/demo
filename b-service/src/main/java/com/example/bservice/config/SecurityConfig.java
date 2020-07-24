@@ -1,3 +1,4 @@
+/*
 package com.example.bservice.config;
 
 import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
@@ -20,3 +21,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticated();
     }
 }
+*/

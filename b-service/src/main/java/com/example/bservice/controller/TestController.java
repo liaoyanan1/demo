@@ -14,7 +14,7 @@ public class TestController {
 
     @GetMapping("/B")
     public String b(){
-
+        
         return "b"+aService.getA();
     }
 }

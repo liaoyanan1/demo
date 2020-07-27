@@ -23,9 +23,6 @@ public class FeignConfig implements RequestInterceptor {
         if (authentication != null && authentication.getDetails() instanceof OAuth2AuthenticationDetails) {
             OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails) authentication.getDetails();
             System.out.println(details.getTokenValue());
-            System.out.println(details.getTokenType());
-            System.out.println(details.getSessionId());
-            System.out.println(details.getDecodedDetails());
             requestTemplate.header(AUTHORIZATION_HEADER, String.format("%s %s", BEARER_TOKEN_TYPE, details.getTokenValue()));
         }
     }

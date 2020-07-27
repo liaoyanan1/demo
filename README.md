@@ -12,7 +12,7 @@
 ### 5. b-service 端口 9090 -9093
 #### 提供b服务接口
 ### 6. oauth2 端口 8899
-#### 提供授权 生成jks  keytool -genkeypair -alias mytest -keyalg RSA -keypass mypass -keystore mytest.jks -storepass mypass
-#### 导出公钥 keytool -list -rfc --keystore mytest.jks | openssl x509 -inform pem -pubkey
+#### 提供授权 生成jks  keytool -genkeypair -alias volunteer -keyalg RSA -keypass volunteer123 -keystore volunteer.jks -storepass volunteer123
+#### 导出公钥 keytool -list -rfc --keystore volunteer.jks | openssl x509 -inform pem -pubkey
 #### 拷贝创建public.txt文件
-#### mytest.jks 和 public.txt 放入认证中心 resource资源路径
+#### volunteer.jks 和 public.txt 放入认证中心 resource资源路径

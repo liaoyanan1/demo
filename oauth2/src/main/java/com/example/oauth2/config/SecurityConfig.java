@@ -23,6 +23,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.requestMatchers().antMatchers("/api/**").and().authorizeRequests().mvcMatchers("/api/**").permitAll();
         http.requestMatchers()
                 .antMatchers("/login","/oauth/authorize")
                 .and()
@@ -60,4 +61,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
+
+
 }

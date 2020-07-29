@@ -7,7 +7,10 @@ import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-
+/** @author lyn
+ * TODO 开启oauth2客户端配置
+ * @date 2020/7/29 9:26
+*/
 @Configuration
 @EnableOAuth2Sso
 @Order(-10)

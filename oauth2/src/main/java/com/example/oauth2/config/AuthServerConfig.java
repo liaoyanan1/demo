@@ -17,7 +17,10 @@ import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFacto
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 
 import javax.sql.DataSource;
-
+/** @author lyn
+ * TODO 权限配置文件 开启oauth2权限认证服务
+ * @date 2020/7/29 9:29
+*/
 @Configuration
 @EnableAuthorizationServer
 public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
@@ -45,10 +48,10 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints
                 .authenticationManager(authenticationManager)
-                .userDetailsService(myUserDetailsService)
-                .tokenStore(tokenStore())
-                .accessTokenConverter(accessTokenConverter())
-                .reuseRefreshTokens(false);
+                .userDetailsService(myUserDetailsService)  //自定义获取user用户名密码认证类
+                .tokenStore(tokenStore())//设置token存储类型
+                .accessTokenConverter(accessTokenConverter())//设置加密类型
+                .reuseRefreshTokens(false);//令牌是否随token一起刷新
     }
 
     @Override
@@ -60,11 +63,12 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
                 .tokenKeyAccess("isAuthenticated()");
     }
 
+    //配置存储clients details信息在数据库中
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.jdbc(dataSource);
     }
-
+    //加密配置密钥
     @Bean
     public JwtAccessTokenConverter accessTokenConverter(){
         JwtAccessTokenConverter jwtAccessTokenConverter = new JwtAccessTokenConverter();

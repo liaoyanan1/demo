@@ -8,6 +8,10 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 
 import javax.servlet.http.HttpServletResponse;
 
+/** @author lyn
+ * TODO 资源服务器安全拦截配置
+ * @date 2020/7/28 14:41
+*/
 @EnableResourceServer
 @Configuration
 public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {

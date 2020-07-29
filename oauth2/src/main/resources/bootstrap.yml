@@ -2,6 +2,7 @@ spring:
   application:
     name: oauth2
   cloud:
+    #配置服务
     config:
       discovery:
         service-id: config-service
@@ -10,6 +11,7 @@ spring:
       password: 123456
   profiles:
     active: dev
+    #redis服务器地址
   redis:
     host: 47.102.96.89
     password: 123456

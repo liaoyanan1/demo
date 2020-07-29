@@ -8,6 +8,10 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
 
+/** @author lyn
+ * TODO 携带oauth2头访问 feign调用服务接口
+ * @date 2020/7/28 14:40
+*/
 @Configuration
 public class FeignConfig implements RequestInterceptor {
 
@@ -18,6 +22,7 @@ public class FeignConfig implements RequestInterceptor {
 
     @Override
     public void apply(RequestTemplate requestTemplate) {
+        //获取全局上下文拿到oauth 信息 设置到 feign请求头中
         SecurityContext securityContext = SecurityContextHolder.getContext();
         Authentication authentication = securityContext.getAuthentication();
         if (authentication != null && authentication.getDetails() instanceof OAuth2AuthenticationDetails) {

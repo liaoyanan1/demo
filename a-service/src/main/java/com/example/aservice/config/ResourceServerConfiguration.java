@@ -6,12 +6,18 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 
 import javax.servlet.http.HttpServletResponse;
-
-@EnableResourceServer
+/** @author lyn
+ * TODO 资源服务器拦截配置
+ * @date 2020/7/28 14:32
+*/
+@EnableResourceServer //oauth2开启资源服务
 @Configuration
 public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
+        //开放访问
+        http.authorizeRequests().mvcMatchers("/swagger-ui.html/**","/webjars/**","/swagger-resources/**","/v2/**","/api/**","/hystrix.stream/**").permitAll();
+        //权限访问
         http
                 .csrf().disable()
                 .exceptionHandling()

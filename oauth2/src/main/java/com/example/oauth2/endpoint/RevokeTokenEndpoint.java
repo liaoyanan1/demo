@@ -8,7 +8,10 @@ import org.springframework.security.oauth2.provider.token.ConsumerTokenServices;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
+/** @author lyn
+ * TODO 退出登录 没测试过
+ * @date 2020/7/29 9:46
+*/
 @FrameworkEndpoint
 public class RevokeTokenEndpoint {
 

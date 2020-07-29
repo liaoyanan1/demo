@@ -13,7 +13,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
-
+/** @author lyn
+ * TODO 开启资源服务开放api权限拦截
+ * @date 2020/7/29 9:44
+*/
 @EnableResourceServer
 @Configuration
 @EnableWebSecurity

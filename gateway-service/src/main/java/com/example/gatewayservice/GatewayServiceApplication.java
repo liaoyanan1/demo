@@ -11,12 +11,15 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.web.firewall.HttpFirewall;
 import org.springframework.security.web.firewall.StrictHttpFirewall;
 
+/** @author lyn
+ * TODO 开启zuul代理oauth2资源服务器配置开启eureka客户端配置
+ * @date 2020/7/29 9:26
+*/
 
 @EnableResourceServer
 @EnableZuulProxy
 @SpringBootApplication
 @EnableDiscoveryClient
-@MapperScan("com.example.gatewayservice.mapper")
 public class GatewayServiceApplication {
 
     public static void main(String[] args) {

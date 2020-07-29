@@ -38,3 +38,5 @@ security:
 git 配置文件根目录 demoConfig-master.zip
 
 启动顺序 先启动config 然后启动 discovery 其他随意
+spring:
+  profiles: zone1 #在启动工具编辑 active profiles 输入 可以工具配置文件开启 修改端口可启动多服务

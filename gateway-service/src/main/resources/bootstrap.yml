@@ -2,7 +2,6 @@ spring:
   application:
     name: gateway-service
   cloud:
-    #配置服务器
     config:
       discovery:
         enabled: true
@@ -11,47 +10,12 @@ spring:
       password: 123456
   profiles:
     active: dev
-#eureka配置
+
 eureka:
   instance:
     prefer-ip-address: true
   client:
     service-url:
       defaultZone: http://lyn:123456@127.0.0.1:8761/eureka/ #配置服务注册发现地址
-    register-with-eureka: false
 server:
   port: 9999
-  servlet:
-    context-path: /gateway
- #zuul路由配置
-zuul:
-  host:
-    connect-timeout-millis: 10000
-    socket-timeout-millis: 60000
-  routes:
-    a-service: #eureka中服务名
-      path: /a-service/** #对应访问区分地址
-    b-service:
-      path: /b-service/**
-    oauth2:
-      path: /oauth2/**
-      sensitiveHeaders: #携带头部访问
-  add-proxy-headers: true
-  sensitive-headers:
-#oauth2配置
-security:
-  oauth2:
-    client:
-      accessTokenUri: http://192.168.3.103:9999/gateway/oauth2/oauth/token
-      userAuthorizationUri: http://192.168.3.103:9999/gateway/oauth2/oauth/authorize
-      client-id: login
-      client-secret: 123456
-    resource:
-      userInfoUri: http://192.168.3.103:9999/gateway/oauth2/user/me
-      preferTokenInfo: false
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"

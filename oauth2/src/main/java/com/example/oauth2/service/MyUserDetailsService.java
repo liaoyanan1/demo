@@ -25,6 +25,8 @@ public class MyUserDetailsService implements UserDetailsService {
         GrantedAuthority grantedAuthority = new SimpleGrantedAuthority("ADMIN");
         List<GrantedAuthority> grantedAuthorities  = new ArrayList<>();
         grantedAuthorities.add(grantedAuthority);
+        System.out.println(s);
+        System.out.println(userInfo);
         User user = new User(userInfo.getUserLoginName(),userInfo.getPassword(),grantedAuthorities);
         return user;
     }

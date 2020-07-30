@@ -1,8 +1,5 @@
 package com.example.oauth2.entity;
-/** @author lyn
- * TODO 数据库用户实体类
- * @date 2020/7/29 9:46
-*/
+
 public class UserInfo {
 
     private Integer userId ;

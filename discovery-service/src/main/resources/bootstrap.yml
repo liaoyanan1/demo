@@ -1,22 +1,19 @@
 spring:
-  profiles: zone1 #在启动工具编辑 active profiles 输入 可以工具配置文件开启
   application:
     name: discovery-service
-    #配置服务器
   cloud:
     config:
       password: 123456
       username: usr
       uri: http://localhost:8888
       fail-fast: true
-      #访问eureka 用户名密码
   security:
     user:
       name: lyn
       password: 123456
 server:
   port: 8761
-#不向自身注册
+
 eureka:
   client:
     registerWithEureka: false

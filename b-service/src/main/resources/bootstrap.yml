@@ -13,6 +13,11 @@ spring:
 
 server:
   port: 9090
+  servlet:
+    context-path: /B
+    session:
+      cookie:
+        name: BSESSION
 management:
   endpoints:
     web:
@@ -24,18 +29,3 @@ eureka:
   client:
     service-url:
       defaultZone: http://lyn:123456@127.0.0.1:8761/eureka/ #配置服务注册发现地址
-
-security:
-  oauth2:
-#    client:
-#      accessTokenUri: http://192.168.3.103:9999/gateway/oauth2/oauth/token
-#      userAuthorizationUri: http://192.168.3.103:9999/gateway/oauth2/oauth/authorize
-#      client-id: login
-#      client-secret: 123456
-    resource:
-      userInfoUri: http://192.168.3.103:9999/gateway/oauth2/user/me
-      preferTokenInfo: false
-
-feign:
-  hystrix:
-    enabled: false

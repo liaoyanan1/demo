@@ -6,10 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 
-/** @author lyn 
- * TODO oauth2单点登录权限认证
- * @date 2020/7/29 9:46 
-*/
+
 @EnableResourceServer
 @SpringBootApplication
 @EnableDiscoveryClient

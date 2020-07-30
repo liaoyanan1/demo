@@ -4,11 +4,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-/** @author lyn
- * TODO 安全拦截配置
- * @date 2020/7/29 9:13
-*/
-
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 

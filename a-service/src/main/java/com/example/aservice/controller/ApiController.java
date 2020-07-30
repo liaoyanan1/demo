@@ -1,5 +1,6 @@
 package com.example.aservice.controller;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 @RestController
 public class ApiController {
+
+    @HystrixCommand(fallbackMethod = "aerror")
     @ApiImplicitParams(
             @ApiImplicitParam(name = "id"
                             ,value = "传入id"
@@ -30,5 +33,10 @@ public class ApiController {
     @GetMapping("/get/{id}")
     public String a(@PathVariable(value = "id") Integer id){
         return  "A"+id;
+    }
+
+    public String aerror(@PathVariable(value = "id") Integer id){
+
+            return  "a"+id;
     }
 }

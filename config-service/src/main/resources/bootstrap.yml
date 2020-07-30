@@ -7,9 +7,9 @@ spring:
     config:
       server:
         git:
-          uri: *
-          username: *
-          password: *
+          uri: https://github.com/liaoyanan1/demoConfig.git
+          username: liaoyanan1
+          password: Lyn@10086
           clone-on-start: true
   security:
     user:

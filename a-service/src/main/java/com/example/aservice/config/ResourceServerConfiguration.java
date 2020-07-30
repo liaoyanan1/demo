@@ -16,7 +16,7 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
     @Override
     public void configure(HttpSecurity http) throws Exception {
         //开放访问
-        http.authorizeRequests().mvcMatchers("/swagger-ui.html/**","/webjars/**","/swagger-resources/**","/v2/**","/api/**","/hystrix.stream/**").permitAll();
+        http.authorizeRequests().mvcMatchers("/swagger-ui.html/**","/webjars/**","/swagger-resources/**","/v2/**","/api/**","/actuator/hystrix.stream").permitAll();
         //权限访问
         http
                 .csrf().disable()

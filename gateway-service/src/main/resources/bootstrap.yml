@@ -8,6 +8,31 @@ spring:
         service-id: config-service
       username: usr
       password: 123456
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: a-service
+          uri: lb://a-service
+          order: 100
+          predicates:
+            - Path=/A/**
+        - id: b-service
+          uri: lb://b-service
+          order: 100
+          predicates:
+            - Path=/B/**
+        - id: oauth2
+          uri: lb://oauth2
+          order: 100
+          predicates:
+            - Path=/oauth/**
+        - id: access
+          uri: lb://access
+          order: 100
+          predicates:
+            - Path=/access/**
   profiles:
     active: dev
 

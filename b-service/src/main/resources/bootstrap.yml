@@ -15,9 +15,6 @@ server:
   port: 9090
   servlet:
     context-path: /B
-    session:
-      cookie:
-        name: BSESSION
 management:
   endpoints:
     web:
@@ -29,3 +26,14 @@ eureka:
   client:
     service-url:
       defaultZone: http://lyn:123456@127.0.0.1:8761/eureka/ #配置服务注册发现地址
+
+security:
+  oauth2:
+    client:
+      clientId: lyn
+      clientSecret: 123456
+      accessTokenUri: http://192.168.3.103:8899/oauth/oauth/token
+      userAuthorizationUri: http://192.168.3.103:8899/oauth/oauth/authorize
+    resource:
+      userInfoUri: http://192.168.3.103:8899/oauth/user/me
+#      prefer-token-info: false

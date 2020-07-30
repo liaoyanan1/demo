@@ -18,3 +18,6 @@ eureka:
     service-url:
       defaultZone: http://lyn:123456@127.0.0.1:8761/eureka/ #配置服务注册发现地址
 
+server:
+  servlet:
+    context-path: /oauth

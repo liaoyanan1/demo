@@ -9,7 +9,7 @@ spring:
         git:
           uri: https://github.com/liaoyanan1/demoConfig.git
           username: liaoyanan1
-          password: Lyn@19951124
+          password: Lyn@002688
           clone-on-start: true
   security:
     user:

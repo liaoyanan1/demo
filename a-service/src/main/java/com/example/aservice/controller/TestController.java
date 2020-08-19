@@ -33,7 +33,7 @@ public class TestController {
                     @HystrixProperty(name = "circuitBreaker.enabled", value = "true"),
                     @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "2")},
             threadPoolProperties = {
-                    @HystrixProperty(name = "coreSize", value = "5"),
+                    @HystrixProperty(name = "coreSize", value = "6"),
                     @HystrixProperty(name = "maximumSize", value = "5"),
                     @HystrixProperty(name = "maxQueueSize", value = "10")
             })

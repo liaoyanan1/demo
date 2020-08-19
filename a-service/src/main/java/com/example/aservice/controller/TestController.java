@@ -2,6 +2,7 @@ package com.example.aservice.controller;
 
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -25,7 +26,17 @@ public class TestController {
 
     @Value("${A}")
     String A;
-    @HystrixCommand(fallbackMethod = "error")
+    @HystrixCommand(fallbackMethod = "error",
+            commandProperties = { //参数信息看配置图
+                    @HystrixProperty(name = "execution.isolation.strategy", value = "THREAD"),
+                    @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "1000"),
+                    @HystrixProperty(name = "circuitBreaker.enabled", value = "true"),
+                    @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "2")},
+            threadPoolProperties = {
+                    @HystrixProperty(name = "coreSize", value = "5"),
+                    @HystrixProperty(name = "maximumSize", value = "5"),
+                    @HystrixProperty(name = "maxQueueSize", value = "10")
+            })
     // @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/A")
     public String A(Principal principal){

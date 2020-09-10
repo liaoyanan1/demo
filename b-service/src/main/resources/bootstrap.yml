@@ -10,7 +10,11 @@ spring:
         service-id: config-service
   profiles:
     active: dev
-
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: $$$$
+    password: $$$$
+    url: jdbc:mysql://47.102.96.89:3306/ssotest?serverTimezone=GMT%2B8&characterEncoding=utf8
 server:
   port: 9090
 management:
@@ -21,9 +25,12 @@ management:
 eureka:
   instance:
     prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 1
+    lease-expiration-duration-in-seconds: 30
   client:
     service-url:
       defaultZone: http://lyn:123456@127.0.0.1:8761/eureka/ #配置服务注册发现地址
+    registry-fetch-interval-seconds: 1
 
 security:
   oauth2:
@@ -33,9 +40,5 @@ security:
 #      client-id: login
 #      client-secret: 123456
     resource:
-      userInfoUri: http://192.168.3.103:9999/gateway/oauth2/user/me
+      userInfoUri: http://10.18.8.231:9999/gateway/oauth2/user/me
       preferTokenInfo: false
-
-feign:
-  hystrix:
-    enabled: false

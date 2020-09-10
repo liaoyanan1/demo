@@ -18,6 +18,7 @@ import java.security.Principal;
  * @date 2020/7/28 14:33
 */
 
+
 @RestController
 @RefreshScope
 public class TestController {
@@ -29,15 +30,19 @@ public class TestController {
     @HystrixCommand(fallbackMethod = "error",
             commandProperties = { //参数信息看配置图
                     @HystrixProperty(name = "execution.isolation.strategy", value = "THREAD"),
-                    @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "1000"),
+                    @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "3000"),
                     @HystrixProperty(name = "circuitBreaker.enabled", value = "true"),
-                    @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "2")},
+                    @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "2")
+            },
             threadPoolProperties = {
-                    @HystrixProperty(name = "coreSize", value = "6"),
-                    @HystrixProperty(name = "maximumSize", value = "5"),
-                    @HystrixProperty(name = "maxQueueSize", value = "10")
-            })
-    // @PreAuthorize("hasAuthority('ADMIN')")
+                    @HystrixProperty(name = "coreSize", value = "100"),
+                    @HystrixProperty(name = "maxQueueSize", value = "10"),
+                    @HystrixProperty(name = "keepAliveTimeMinutes", value = "2")
+            },
+            groupKey = "group1",
+            threadPoolKey = "threadPool1"
+    )
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/A")
     public String A(Principal principal){
         return A+principal;

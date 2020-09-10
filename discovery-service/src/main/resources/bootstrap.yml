@@ -21,3 +21,11 @@ eureka:
   client:
     registerWithEureka: false
     fetchRegistry: false
+  instance:
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 1
+    lease-expiration-duration-in-seconds: 30
+  server:
+    response-cache-update-interval-ms: 2000
+    eviction-interval-timer-in-ms: 2000
+    enable-self-preservation: false

@@ -20,6 +20,7 @@ import org.springframework.security.web.firewall.StrictHttpFirewall;
 @EnableZuulProxy
 @SpringBootApplication
 @EnableDiscoveryClient
+@MapperScan("com.example.gatewayservice.mapper")
 public class GatewayServiceApplication {
 
     public static void main(String[] args) {

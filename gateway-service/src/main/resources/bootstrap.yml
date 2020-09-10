@@ -11,26 +11,56 @@ spring:
       password: 123456
   profiles:
     active: dev
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ####
+    password: ####
+    url: jdbc:mysql://47.102.96.89:3306/ssotest?serverTimezone=GMT%2B8&characterEncoding=utf8
+    # Hikari 连接池配置
+    # 最小空闲连接数量
+    hikari:
+      minimum-idle: 5000
+      # 空闲连接存活最大时间，默认600000（10分钟）
+      idle-timeout: 1000
+      # 连接池最大连接数，默认是10
+      maximum-pool-size: 100
+      # 此属性控制从池返回的连接的默认自动提交行为,默认值：true
+      auto-commit: true
+      # 连接池名称
+      pool-name: MyHikariCP
+      # 此属性控制池中连接的最长生命周期，值0表示无限生命周期，默认1800000即30分钟
+      max-lifetime: 1800000
+      # 数据库连接超时时间,默认30秒，即30000
+      connection-timeout: 10000
+      connection-test-query: SELECT 1
 #eureka配置
 eureka:
   instance:
     prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 1
+    lease-expiration-duration-in-seconds: 30
   client:
     service-url:
       defaultZone: http://lyn:123456@127.0.0.1:8761/eureka/ #配置服务注册发现地址
+    registry-fetch-interval-seconds: 1
     register-with-eureka: false
+
 server:
   port: 9999
   servlet:
     context-path: /gateway
  #zuul路由配置
 zuul:
-  host:
+  ribbon:
+    eager-load:
+      enabled: true
+  host: #url 时触发
     connect-timeout-millis: 10000
-    socket-timeout-millis: 60000
+    socket-timeout-millis: 10000
+    connection-request-timeout-millis: 10000
   routes:
-    a-service: #eureka中服务名
-      path: /a-service/** #对应访问区分地址
+#    a-service: #eureka中服务名
+#      path: /a-service/** #对应访问区分地址
     b-service:
       path: /b-service/**
     oauth2:
@@ -42,14 +72,24 @@ zuul:
 security:
   oauth2:
     client:
-      accessTokenUri: http://192.168.3.103:9999/gateway/oauth2/oauth/token
-      userAuthorizationUri: http://192.168.3.103:9999/gateway/oauth2/oauth/authorize
+      accessTokenUri: http://10.18.8.231:9999/gateway/oauth2/oauth/token
+      userAuthorizationUri: http://10.18.8.231:9999/gateway/oauth2/oauth/authorize
       client-id: login
       client-secret: 123456
     resource:
-      userInfoUri: http://192.168.3.103:9999/gateway/oauth2/user/me
+      userInfoUri: http://10.18.8.231:9999/gateway/oauth2/user/me
       preferTokenInfo: false
 
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+ribbon:
+  ReadTimeout: 30000  #eureka使用
+  ConnectTimeout: 30000  #  eureka使用
 management:
   endpoints:
     web:

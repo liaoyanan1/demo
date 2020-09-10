@@ -24,9 +24,12 @@ management:
 eureka:
   instance:
     prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 1
+    lease-expiration-duration-in-seconds: 30
   client:
     service-url:
       defaultZone: http://lyn:123456@127.0.0.1:8761/eureka/ #配置服务注册发现地址
+    registry-fetch-interval-seconds: 1
 #oauth2 资源服务器配置
 security:
   oauth2:
@@ -37,9 +40,5 @@ security:
 #      client-secret: 123456
 #      clientAuthenticationScheme: form
     resource:
-      userInfoUri: http://192.168.3.103:9999/gateway/oauth2/user/me
+      userInfoUri: http://10.18.8.231:9999/gateway/oauth2/user/me
       preferTokenInfo: false
-#开启断路由
-feign:
-  hystrix:
-    enabled: true

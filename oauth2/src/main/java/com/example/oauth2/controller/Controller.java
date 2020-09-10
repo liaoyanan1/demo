@@ -35,6 +35,7 @@ public class Controller {
         OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails) context.getAuthentication().getDetails();
         String tokenValue = details.getTokenValue();
         response.setHeader("Authorization"," ");
-      return consumerTokenServices.revokeToken(tokenValue)==true?"成功退出登录":"退出登录失败";
+        response.setHeader("AUTHORIZATION_HEADER"," ");
+      return consumerTokenServices.revokeToken(tokenValue)==true?"退出成功":"退出登录失败";
     }
 }

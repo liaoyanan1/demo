@@ -6,12 +6,14 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 
 /** @author lyn
  * TODO 开启oauth2客户端配置
  * @date 2020/7/29 9:26
 */
 @Configuration
+@EnableResourceServer
 @EnableOAuth2Sso
 @Order(-10)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -21,8 +23,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers( "/login","/oauth2/**")
                 .permitAll()
-                .anyRequest().authenticated();
-
+                .anyRequest()
+                .authenticated();
         http.csrf().disable();
     }
 

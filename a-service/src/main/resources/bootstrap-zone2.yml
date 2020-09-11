@@ -9,10 +9,10 @@ spring:
         service-id: config-service
   application:
     name: a-service
-  profiles: zone1
+  profiles: zone2
 
 server:
-  port: 8080
+  port: 8081
 
 management:
   endpoints:
@@ -27,7 +27,7 @@ eureka:
     lease-renewal-interval-in-seconds: 1
     lease-expiration-duration-in-seconds: 30
     metadata-map:
-      version: current
+      version: new
   client:
     service-url:
       defaultZone: http://lyn:123456@127.0.0.1:8761/eureka/ #配置服务注册发现地址

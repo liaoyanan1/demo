@@ -45,6 +45,7 @@ public class TestController {
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/A")
     public String A(Principal principal){
+        System.out.println("1");
         return A+principal;
     }
 

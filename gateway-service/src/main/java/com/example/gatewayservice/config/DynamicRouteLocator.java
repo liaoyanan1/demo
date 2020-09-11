@@ -57,7 +57,7 @@ public class DynamicRouteLocator extends SimpleRouteLocator implements Refreshab
             values.put(path, entry.getValue());
         }
         
-        //System.out.println("路由表：" + values);
+      //  System.out.println("路由表：" + values);
         
         return values;
     }

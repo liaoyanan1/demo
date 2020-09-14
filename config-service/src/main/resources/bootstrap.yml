@@ -8,13 +8,15 @@ spring:
       server:
         git:
           uri: https://github.com/liaoyanan1/demoConfig.git
-          username: liaoyanan1
-          password: $$$$
+          username: ###
+          password: ###
           clone-on-start: true
   security:
     user:
       password: 123456   #配置config服务密码
       name: usr
+  profiles:
+    active: dev
 eureka:
   instance:
     prefer-ip-address: true

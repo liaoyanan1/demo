@@ -20,10 +20,10 @@ class BServiceApplicationTests {
 
     Logger logger =  LoggerFactory.getLogger(BServiceApplicationTests.class);
 
-    @Autowired
+   // @Autowired
     AService aService;
 
-    @ClassRule
+   // @ClassRule
     public static HoverflyRule hoverflyRule = HoverflyRule
             .inSimulationMode(dsl(
                     service("a-service:8080")
@@ -41,10 +41,10 @@ class BServiceApplicationTests {
             .printSimulationData();
 
 
-    @Test
+    //@Test
     void contextLoads() {
         for (int i = 0; i < 1000; i++) {
-            String a = aService.getA();
+            String a = aService.getA(i);
             logger.info("get {}",a);
         }
 

@@ -13,17 +13,17 @@ spring:
     active: dev
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: ####
-    password: ####
+    username: ###
+    password: ###
     url: jdbc:mysql://47.102.96.89:3306/ssotest?serverTimezone=GMT%2B8&characterEncoding=utf8
     # Hikari 连接池配置
     # 最小空闲连接数量
     hikari:
-      minimum-idle: 5000
+      minimum-idle: 1
       # 空闲连接存活最大时间，默认600000（10分钟）
-      idle-timeout: 1000
+      idle-timeout: 10000
       # 连接池最大连接数，默认是10
-      maximum-pool-size: 100
+      maximum-pool-size: 10
       # 此属性控制从池返回的连接的默认自动提交行为,默认值：true
       auto-commit: true
       # 连接池名称
@@ -78,7 +78,7 @@ security:
       client-secret: 123456
     resource:
       userInfoUri: http://10.18.8.231:9999/gateway/oauth2/user/me
-      preferTokenInfo: false
+
 
 hystrix:
   command:
@@ -86,10 +86,10 @@ hystrix:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 60000
+            timeoutInMilliseconds: 120000
 ribbon:
-  ReadTimeout: 30000  #eureka使用
-  ConnectTimeout: 30000  #  eureka使用
+  ReadTimeout: 120000  #eureka使用
+  ConnectTimeout: 120000  #  eureka使用
 management:
   endpoints:
     web:

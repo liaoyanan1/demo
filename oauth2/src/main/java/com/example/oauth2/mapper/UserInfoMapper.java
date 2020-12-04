@@ -17,4 +17,7 @@ public interface UserInfoMapper {
 
     @Insert("insert into user(userId,userLoginName,userName,password) value(#{userId},#{userLoginName},#{userName},#{password})")
     boolean insertNewUser(UserInfo user);
+
+    @Select("SELECT * FROM user WHERE phone = #{phone} and code = #{code}")
+    UserInfo queryUserByPhoneAndCode(String phone, String code);
 }

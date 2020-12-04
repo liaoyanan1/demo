@@ -14,4 +14,12 @@ public class UserInfoService {
     public boolean creatUser(UserInfo userInfo) {
         return userInfoMapper.insertNewUser(userInfo);
     }
+
+    public UserInfo queryUser(String name){
+      return   userInfoMapper.queryUserByUserName(name);
+    }
+    public UserInfo queryUserByPhoneAndCode(String phone,String code){
+      return   userInfoMapper.queryUserByPhoneAndCode(phone,code);
+    }
+
 }

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 /** @author lyn
- * TODO 退出登录 没测试过
+ * TODO 退出登录 测试过
  * @date 2020/7/29 9:46
 */
 @FrameworkEndpoint
@@ -19,7 +19,7 @@ public class RevokeTokenEndpoint {
     @Qualifier("consumerTokenServices")
     ConsumerTokenServices consumerTokenServices;
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/oauth/token")
+    @RequestMapping(method = RequestMethod.DELETE, value = "/oauth/revokeToken")
     @ResponseBody
     public String revokeToken(String access_token) {
         if (consumerTokenServices.revokeToken(access_token)){

@@ -1,9 +1,13 @@
 package com.example.oauth2.entity;
+
+import java.io.Serializable;
+
 /** @author lyn
  * TODO 数据库用户实体类
  * @date 2020/7/29 9:46
 */
-public class UserInfo {
+public class UserInfo implements Serializable {
+    private static final long serialVersionUID = 11111L;
 
     private Integer userId ;
 
@@ -12,6 +16,28 @@ public class UserInfo {
     private String userName;
 
     private String password;
+
+    private String phone;
+
+    private String code;
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public UserInfo setPhone(String phone) {
+        this.phone = phone;
+        return this;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public UserInfo setCode(String code) {
+        this.code = code;
+        return this;
+    }
 
     public Integer getUserId() {
         return userId;

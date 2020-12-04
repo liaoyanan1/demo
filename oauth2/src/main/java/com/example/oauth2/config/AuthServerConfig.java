@@ -12,11 +12,18 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.CompositeTokenGranter;
+import org.springframework.security.oauth2.provider.TokenGranter;
+import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 
 import javax.sql.DataSource;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /** @author lyn
  * TODO 权限配置文件 开启oauth2权限认证服务
  * @date 2020/7/29 9:29
@@ -24,9 +31,6 @@ import javax.sql.DataSource;
 @Configuration
 @EnableAuthorizationServer
 public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
-
-
-
 
     @Autowired
     private DataSource dataSource;
@@ -44,14 +48,22 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
     }
 
 
+    public TokenGranter tokenGranter( AuthorizationServerEndpointsConfigurer endpoints){
+        List<TokenGranter> granters = new ArrayList<TokenGranter>(Arrays.asList(endpoints.getTokenGranter()));
+        granters.add(new PhoneTokenGranter(myUserDetailsService,endpoints.getTokenServices(),endpoints.getClientDetailsService(),endpoints.getOAuth2RequestFactory()));
+        return new CompositeTokenGranter(granters);
+    }
+
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+
         endpoints
                 .authenticationManager(authenticationManager)
                 .userDetailsService(myUserDetailsService)  //自定义获取user用户名密码认证类
                 .tokenStore(tokenStore())//设置token存储类型
-                .accessTokenConverter(accessTokenConverter())//设置加密类型
-                .reuseRefreshTokens(false);//令牌是否随token一起刷新
+                .accessTokenConverter(accessTokenConverter())//设置jwt加密
+                .reuseRefreshTokens(false).tokenGranter(tokenGranter(endpoints))//.tokenEnhancer(new MyTokenEnchar());//不加密token附加信息
+         ;//令牌是否随token一起刷新
     }
 
     @Override
@@ -60,7 +72,7 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
                 .tokenKeyAccess("permitAll()")
                 .checkTokenAccess("isAuthenticated()");*/
         security.allowFormAuthenticationForClients()
-                .tokenKeyAccess("isAuthenticated()");
+                .tokenKeyAccess("isAuthenticated()").checkTokenAccess("permitAll()");
     }
 
     //配置存储clients details信息在数据库中
@@ -71,7 +83,7 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
     //加密配置密钥
     @Bean
     public JwtAccessTokenConverter accessTokenConverter(){
-        JwtAccessTokenConverter jwtAccessTokenConverter = new JwtAccessTokenConverter();
+        JwtAccessTokenConverter jwtAccessTokenConverter = new MyJwtAccessTokenConverter();//token附加信息
         KeyStoreKeyFactory keyStoreKeyFactory =  new KeyStoreKeyFactory(new ClassPathResource("volunteer.jks"), "volunteer123".toCharArray());
         jwtAccessTokenConverter.setKeyPair(keyStoreKeyFactory.getKeyPair("volunteer"));
         return  jwtAccessTokenConverter;

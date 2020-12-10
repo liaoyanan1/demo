@@ -24,9 +24,9 @@ public class GrayReleaseConfig {
         return grayReleaseMap;
     }
 
-    @Scheduled(fixedRate = 5000)
+    @Scheduled(fixedRate = 10000)
     private void setGrayReleaseMap(){
-        System.out.println("定时刷新灰度发布表");
+       // System.out.println("定时刷新灰度发布表");
         List<GrayRelease> grayReleases = grayReleaseMapper.queryAllGrayRelease();
         for (GrayRelease grayRelease : grayReleases) {
             grayReleaseMap.put(grayRelease.getPath(),grayRelease);

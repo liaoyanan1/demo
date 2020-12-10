@@ -1,14 +1,14 @@
 spring:
-  profiles: zone1 #在启动工具编辑 active profiles 输入 可以工具配置文件开启
+#  profiles: zone1 #在启动工具编辑 active profiles 输入 可以工具配置文件开启
   application:
     name: discovery-service
-    #配置服务器
-  cloud:
-    config:
-      password: 123456
-      username: usr
-      uri: http://localhost:8888
-      fail-fast: false
+#    #配置服务器
+#  cloud:
+#    config:
+#      password: 123456
+#      username: usr
+#      uri: http://localhost:8888
+#      fail-fast: false
       #访问eureka 用户名密码
   security:
     user:
@@ -22,13 +22,13 @@ eureka:
     registerWithEureka: false
     fetchRegistry: false
     service-url:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/,http://${eureka.instance.hostname}:8762/eureka/
+      defaultZone: http://lyn:123456@${eureka.instance.hostname}:${server.port}/eureka/
   instance:
-    hostname: 10.18.8.231
+    hostname: 127.0.0.1
     prefer-ip-address: true
-    lease-renewal-interval-in-seconds: 1
-    lease-expiration-duration-in-seconds: 3
+    lease-renewal-interval-in-seconds: 2
+    lease-expiration-duration-in-seconds: 5
   server:
-    response-cache-update-interval-ms: 2000
-    eviction-interval-timer-in-ms: 2000
+    response-cache-update-interval-ms: 5000
+    eviction-interval-timer-in-ms: 5000
     enable-self-preservation: false

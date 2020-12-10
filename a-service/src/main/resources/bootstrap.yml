@@ -13,8 +13,8 @@ spring:
         tx-service-group: test_group
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: ###
-    password: ###
+    username: #
+    password: #
     url: jdbc:mysql://47.102.96.89:3306/aservice?serverTimezone=GMT%2B8&characterEncoding=utf8
   application:
     name: a-service
@@ -50,5 +50,5 @@ security:
 #      client-secret: 123456
 #      clientAuthenticationScheme: form
     resource:
-      userInfoUri: http://10.18.8.231:9999/gateway/oauth2/user/me
+      userInfoUri: http://localhost:9999/gateway/oauth2/user/me
       preferTokenInfo: false

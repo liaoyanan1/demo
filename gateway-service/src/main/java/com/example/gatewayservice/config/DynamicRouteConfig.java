@@ -37,9 +37,9 @@ public class DynamicRouteConfig{
     @Autowired
     private RouteLocator routeLocator;
 
-    @Scheduled(fixedRate = 5000)
+    @Scheduled(fixedRate =10000)
     private void refreshRoute() {
-        System.out.println("定时刷新路由表");
+      //  System.out.println("定时刷新路由表");
         RoutesRefreshedEvent routesRefreshedEvent = new RoutesRefreshedEvent(routeLocator);
         publisher.publishEvent(routesRefreshedEvent);
     }

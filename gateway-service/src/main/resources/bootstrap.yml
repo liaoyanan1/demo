@@ -1,20 +1,20 @@
 spring:
   application:
     name: gateway-service
-  cloud:
-    #配置服务器
-    config:
-      discovery:
-        enabled: true
-        service-id: config-service
-      username: usr
-      password: 123456
-  profiles:
-    active: dev
+#  cloud:
+#    #配置服务器
+#    config:
+#      discovery:
+#        enabled: true
+#        service-id: config-service
+#      username: usr
+#      password: 123456
+#  profiles:
+#    active: dev
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: ###
-    password: ###
+    username: #
+    password: #
     url: jdbc:mysql://47.102.96.89:3306/ssotest?serverTimezone=GMT%2B8&characterEncoding=utf8
     # Hikari 连接池配置
     # 最小空闲连接数量
@@ -37,12 +37,12 @@ spring:
 eureka:
   instance:
     prefer-ip-address: true
-    lease-renewal-interval-in-seconds: 1
+    lease-renewal-interval-in-seconds: 2
     lease-expiration-duration-in-seconds: 30
   client:
     service-url:
       defaultZone: http://lyn:123456@127.0.0.1:8761/eureka/ #配置服务注册发现地址
-    registry-fetch-interval-seconds: 1
+    registry-fetch-interval-seconds: 2
     register-with-eureka: false
 
 server:
@@ -68,16 +68,7 @@ zuul:
       sensitiveHeaders: #携带头部访问
   add-proxy-headers: true
   sensitive-headers:
-#oauth2配置
-security:
-  oauth2:
-    client:
-      accessTokenUri: http://10.18.8.231:9999/gateway/oauth2/oauth/token
-      userAuthorizationUri: http://10.18.8.231:9999/gateway/oauth2/oauth/authorize
-      client-id: login
-      client-secret: 123456
-    resource:
-      userInfoUri: http://10.18.8.231:9999/gateway/oauth2/user/me
+
 
 
 hystrix:

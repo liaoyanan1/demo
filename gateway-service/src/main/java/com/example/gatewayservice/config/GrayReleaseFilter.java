@@ -5,6 +5,8 @@ import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
 import io.jmnarloch.spring.cloud.ribbon.support.RibbonFilterContextHolder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
@@ -19,7 +21,7 @@ import java.util.Random;
 */
 @Configuration
 public class GrayReleaseFilter  extends ZuulFilter {
-
+     private  Logger  Log = LoggerFactory.getLogger(GrayReleaseFilter.class);
     @Autowired
     private HttpServletRequest httpServletRequest;
     @Autowired
@@ -49,7 +51,8 @@ public class GrayReleaseFilter  extends ZuulFilter {
         if (grayReleaseMap.containsKey(path[1])){
             GrayRelease grayRelease = grayReleaseMap.get(path[1]);
             if (grayRelease.getEnableGrayRelease()==1){
-                System.out.println("启动灰度发布"+path[1]);
+                Log.info("启动灰度发布"+path[1]);
+                //System.out.println("启动灰度发布"+path[1]);
                 percent = grayRelease.getPercent();
                 return true;
             }
